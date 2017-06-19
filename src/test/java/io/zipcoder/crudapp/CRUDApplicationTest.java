@@ -27,6 +27,8 @@ public class CRUDApplicationTest {
     @Test
     public void testPostAndThenGet() {
         Person person = new Person();
+        person.setAge(20);
+        person.setName("testname1");
         HttpEntity<Person> request = new HttpEntity<>(person);
 
         ResponseEntity<Person> response = this.restTemplate
@@ -35,6 +37,29 @@ public class CRUDApplicationTest {
         Assert.assertEquals(response.getStatusCode(), HttpStatus.CREATED);
 
     }
+    @Test
+    public void testPut() {
+        Person person = new Person();
+        person.setId(1);
+        HttpEntity<Person> request = new HttpEntity<>(person);
 
+        ResponseEntity<Person> response = this.restTemplate
+                .exchange("/persons", HttpMethod.PUT, request, Person.class);
+
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.ACCEPTED);
+
+    }
+
+    @Test
+    public void testDelete() {
+        Person person = new Person();
+        HttpEntity<Person> request = new HttpEntity<>(person);
+
+        ResponseEntity<Person> response = this.restTemplate
+                .exchange("/persons", HttpMethod.DELETE, request, Person.class);
+
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.CREATED);
+
+    }
 
 }
