@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.criteria.CriteriaBuilder;
 
 /**
  * Created by vidyachandasekhar on 6/15/17.
@@ -17,6 +18,8 @@ public class Person {
     private Integer id;
 
     private String name;
+
+    private Integer age;
 
     public Integer getId() {
         return id;
@@ -34,8 +37,15 @@ public class Person {
         this.name = name;
     }
 
-    Person(){
+    public Person(){
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
 }
